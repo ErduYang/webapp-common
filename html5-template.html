@@ -20,11 +20,57 @@
     <meta name="author" content="魔法小栈"/> <!-- 定义网页作者-->
     <!--
         定义网页搜索引擎方式，值用逗号分隔，可以是以下值：
-        index:
+        index:告诉搜索引擎索引本页面，这是默认属性，如果不设置meta标签，搜索引擎默认会索引本页面。
+        noindex: 告诉搜索引擎不要把本页展示在他们的搜索结果中。
+        noimageindex: 禁止搜索引擎索引本页面上的图片，本页面上的图片不会显示在搜索结果中。
+        none: none是noindex,nofollow的缩写，告诉搜索引擎不要索引本页面，告诉爬虫不要索引本页面上的链接页面。
+        follow: 告诉搜索引擎爬虫可以爬行本页面上的链接，不管该页面是不是允许索引。
+        nofollow: 告诉搜索引擎不要爬行本页面上的链接。
+        noarchive: 阻止搜索引擎在搜索结果中显示该页面的缓存版本，就是快照。
+        nocache: 功能和noarchive一样，但是适用于MSN/Live搜索引擎。
+        nosnippet:  搜索引擎的搜索结果中会显示一部分搜索文字上下文的内容，nosnippet属性就是拒绝搜索引擎显示这部分内容，另外，所说引擎也不会保存该页面的快照。
+        noodp:  搜索引擎的搜索结果中会显示一部分搜索文字上下文的内容，noodp属性用来阻止使用DMOZ信息做为这部分的文字使用。
+        noydir: 搜索引擎的搜索结果中会显示一部分搜索文字上下文的内容，noydir阻止雅虎使用Yahoo! directory信息作为这部分的文字使用。
     -->
     <meta name="robots" value="index, follow"/>
+
+    <!-- iOS设备 -->
+    <meta name="apple-mobile-web-app-title" content="标题">  <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- 是否启用 WebApp 全屏模式 -->
+    <meta name="format-detection" content="telephone=no" /><!-- 禁用自动识别电话号码 -->
+    <meta name="format-detection" content="email=no" /><!-- 禁用自动识别电子邮件 -->
+    <!--
+        设置状态栏的背景颜色,只有在 "apple-mobile-web-app-capable" content="yes" 时生效
+            content 参数：
+                default 默认值。
+                black 状态栏背景是黑色。
+                black-translucent 状态栏背景是黑色半透明。
+                设置为 default 或 black ,网页内容从状态栏底部开始。
+                设置为 black-translucent ,网页内容充满整个屏幕，顶部会被状态栏遮挡。
+    -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
 </head>
 <body>
 
+<script type="text/javascript">
+    /*
+      设置文档的font-size便于使用rem单位进行自适应布局
+     */
+    (function (doc, win){
+        var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange': 'resize',
+                recalc = function(){
+                    var clientWidth = docEl.clientWidth;
+                    if(!clientWidth) return;
+                    docEl.style.fontSize = (clientWidth/6.4) + 'px';  //其中6.4意思基于640px的设计稿来的
+                }
+
+        if(!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+
+    })(document, window);
+</script>
 </body>
 </html>
