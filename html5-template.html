@@ -63,6 +63,7 @@
                 recalc = function(){
                     var clientWidth = docEl.clientWidth;
                     if(!clientWidth) return;
+                    if(clientWidth>750) clientWidth = 750; //在pc端上显示设定一个宽度
                     docEl.style.fontSize = (clientWidth/6.4) + 'px';  //其中6.4意思基于640px的设计稿来的
                 }
 
